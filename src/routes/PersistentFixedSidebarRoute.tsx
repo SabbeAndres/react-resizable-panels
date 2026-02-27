@@ -1,5 +1,6 @@
-import { Box, Callout, Header } from "react-lib-tools";
+import { Box, Callout, Code, Header } from "react-lib-tools";
 import { useDefaultLayout } from "react-resizable-panels";
+import { html as ExampleHTML } from "../../public/generated/examples/PersistentFixedSidebar.json";
 import { Group } from "../components/styled-panels/Group";
 import { Panel } from "../components/styled-panels/Panel";
 import { Separator } from "../components/styled-panels/Separator";
@@ -23,6 +24,7 @@ export default function PersistentFixedSidebarRoute() {
       <div>
         Resize panels, reload the page, and the last layout will be restored.
       </div>
+      <Code html={ExampleHTML} />
       <Group
         className="h-15"
         defaultLayout={defaultLayout}

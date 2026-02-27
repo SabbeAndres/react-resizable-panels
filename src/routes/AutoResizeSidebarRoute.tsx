@@ -1,4 +1,5 @@
-import { Box, Header } from "react-lib-tools";
+import { Box, Code, Header } from "react-lib-tools";
+import { html as ExampleHTML } from "../../public/generated/examples/AutoResizeSidebar.json";
 import { Group } from "../components/styled-panels/Group";
 import { Panel } from "../components/styled-panels/Panel";
 import { Separator } from "../components/styled-panels/Separator";
@@ -11,6 +12,7 @@ export default function AutoResizeSidebarRoute() {
         Use <code>autoResize=&#123;false&#125;</code> on a sidebar panel to keep
         its pixel size stable when the browser or container resizes.
       </div>
+      <Code html={ExampleHTML} />
       <Group>
         <Panel autoResize={false} defaultSize={280} maxSize={420} minSize={200} showSizeInPixels>
           left sidebar
