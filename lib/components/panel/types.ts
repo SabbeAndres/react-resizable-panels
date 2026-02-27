@@ -10,6 +10,7 @@ export type PanelSize = {
  * Values specified using other CSS units must be pre-converted.
  */
 export type PanelConstraints = {
+  autoResize: boolean;
   collapsedSize: number;
   collapsible: boolean;
   defaultSize: number | undefined;
@@ -92,6 +93,16 @@ export interface PanelImperativeHandle {
 type BasePanelAttributes = Omit<HTMLAttributes<HTMLDivElement>, "onResize">;
 
 export type PanelProps = BasePanelAttributes & {
+  /**
+   * Whether this panel should resize automatically when the Group size changes.
+   *
+   * Defaults to true.
+   *
+   * Set to false to keep this panel's pixel size stable on window/container resize,
+   * while sibling panels absorb the remaining delta.
+   */
+  autoResize?: boolean | undefined;
+
   /**
    * CSS class name.
    *
@@ -202,6 +213,7 @@ export type PanelConstraintProps = Pick<
   PanelProps,
   | "collapsedSize"
   | "collapsible"
+  | "autoResize"
   | "defaultSize"
   | "disabled"
   | "maxSize"

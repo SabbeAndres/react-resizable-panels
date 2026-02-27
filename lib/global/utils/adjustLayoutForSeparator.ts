@@ -46,6 +46,7 @@ export function adjustLayoutForSeparator(
     updateMountedGroup(group, {
       defaultLayoutDeferred: groupState.defaultLayoutDeferred,
       derivedPanelConstraints: groupState.derivedPanelConstraints,
+      groupSize: groupState.groupSize,
       layout: nextLayout,
       separatorToPanels: groupState.separatorToPanels
     });

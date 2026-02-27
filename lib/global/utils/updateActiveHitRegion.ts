@@ -67,19 +67,19 @@ export function updateActiveHitRegions({
     }
 
     const initialLayout = initialLayoutMap.get(group);
+    const groupState = mountedGroups.get(group);
+    if (!initialLayout || !groupState) {
+      return;
+    }
 
     const {
       defaultLayoutDeferred,
       derivedPanelConstraints,
+      groupSize: mountedGroupSize,
       layout: prevLayout,
       separatorToPanels
-    } = mountedGroups.get(group) ?? { defaultLayoutDeferred: false };
-    if (
-      derivedPanelConstraints &&
-      initialLayout &&
-      prevLayout &&
-      separatorToPanels
-    ) {
+    } = groupState;
+    if (derivedPanelConstraints && prevLayout && separatorToPanels) {
       const nextLayout = adjustLayoutByDelta({
         delta: deltaAsPercentage,
         initialLayout,
@@ -113,6 +113,7 @@ export function updateActiveHitRegions({
         updateMountedGroup(current.group, {
           defaultLayoutDeferred,
           derivedPanelConstraints: derivedPanelConstraints,
+          groupSize: mountedGroupSize,
           layout: nextLayout,
           separatorToPanels
         });

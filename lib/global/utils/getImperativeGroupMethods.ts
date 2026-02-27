@@ -40,6 +40,7 @@ export function getImperativeGroupMethods({
         defaultLayoutDeferred,
         derivedPanelConstraints,
         group,
+        groupSize,
         layout: prevLayout,
         separatorToPanels
       } = find();
@@ -62,6 +63,7 @@ export function getImperativeGroupMethods({
         updateMountedGroup(group, {
           defaultLayoutDeferred,
           derivedPanelConstraints,
+          groupSize,
           layout: nextLayout,
           separatorToPanels
         });

@@ -12,6 +12,7 @@ export function calculatePanelConstraints(group: RegisteredGroup) {
     // Can't calculate anything meaningful if the group has a width/height of 0
     // (This could indicate that it's within a hidden subtree)
     return panels.map((current) => ({
+      autoResize: current.panelConstraints.autoResize !== false,
       collapsedSize: 0,
       collapsible: current.panelConstraints.collapsible === true,
       defaultSize: undefined,
@@ -70,6 +71,7 @@ export function calculatePanelConstraints(group: RegisteredGroup) {
     }
 
     return {
+      autoResize: panelConstraints.autoResize !== false,
       collapsedSize,
       collapsible: panelConstraints.collapsible === true,
       defaultSize,

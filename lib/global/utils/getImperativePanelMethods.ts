@@ -22,6 +22,7 @@ export function getImperativePanelMethods({
         defaultLayoutDeferred,
         derivedPanelConstraints,
         layout,
+        groupSize,
         separatorToPanels
       }
     ] of mountedGroups) {
@@ -30,6 +31,7 @@ export function getImperativePanelMethods({
           defaultLayoutDeferred,
           derivedPanelConstraints,
           group,
+          groupSize,
           layout,
           separatorToPanels
         };
@@ -78,6 +80,7 @@ export function getImperativePanelMethods({
       defaultLayoutDeferred,
       derivedPanelConstraints,
       group,
+      groupSize,
       layout: prevLayout,
       separatorToPanels
     } = find();
@@ -102,6 +105,7 @@ export function getImperativePanelMethods({
       updateMountedGroup(group, {
         defaultLayoutDeferred,
         derivedPanelConstraints,
+        groupSize,
         layout: nextLayout,
         separatorToPanels
       });

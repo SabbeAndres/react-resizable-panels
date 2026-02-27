@@ -6,6 +6,7 @@ import type { SeparatorToPanelsMap } from "./types";
 type State = {
   defaultLayoutDeferred: boolean;
   derivedPanelConstraints: PanelConstraints[];
+  groupSize: number;
   layout: Layout;
   separatorToPanels: SeparatorToPanelsMap;
 };
