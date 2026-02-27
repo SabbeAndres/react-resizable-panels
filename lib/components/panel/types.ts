@@ -10,7 +10,7 @@ export type PanelSize = {
  * Values specified using other CSS units must be pre-converted.
  */
 export type PanelConstraints = {
-  autoResize: boolean;
+  autoResize?: boolean;
   collapsedSize: number;
   collapsible: boolean;
   defaultSize: number | undefined;

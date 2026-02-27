@@ -222,6 +222,14 @@ Falls back to <code>useId</code> when not provided.</p>
 </td>
     </tr>
     <tr>
+      <td>autoResize</td>
+      <td><p>Whether this panel should resize automatically when the Group size changes.</p>
+<p>Defaults to true.</p>
+<p>Set to false to keep this panel&#39;s pixel size stable on window/container resize,
+while sibling panels absorb the remaining delta.</p>
+</td>
+    </tr>
+    <tr>
       <td>collapsedSize</td>
       <td><p>Panel size when collapsed; defaults to 0%.</p>
 </td>

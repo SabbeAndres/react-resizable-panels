@@ -52,6 +52,9 @@ export default function App() {
             <NavLink path="/examples/fixed-size-panels">
               Fixed size panels
             </NavLink>
+            <NavLink path="/examples/fixed-sidebar-panel">
+              Fixed sidebar panel
+            </NavLink>
             <NavLink path="/examples/disabled-panels">Disabled panels</NavLink>
             <NavLink path="/examples/custom-css-styles">
               Custom CSS styles
