@@ -63,6 +63,11 @@ export default function PersistentLayoutsRoute() {
             Persistent layouts with server components
           </Link>
         </li>
+        <li className="list-disc">
+          <Link to="/examples/persistent-layout/fixed-sidebar-panel">
+            Persistent layout with fixed sidebar panel
+          </Link>
+        </li>
       </ul>
     </Box>
   );
