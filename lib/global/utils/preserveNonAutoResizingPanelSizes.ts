@@ -64,7 +64,9 @@ export function preserveNonAutoResizingPanelSizes({
       );
     }
   } else {
-    const evenSize = formatLayoutNumber(remainingSize / flexiblePanelIds.length);
+    const evenSize = formatLayoutNumber(
+      remainingSize / flexiblePanelIds.length
+    );
     for (const panelId of flexiblePanelIds) {
       nextLayout[panelId] = evenSize;
     }

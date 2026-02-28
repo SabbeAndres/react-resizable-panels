@@ -45,10 +45,6 @@ export default function App() {
               <ArrowTurnDownRightIcon className="size-4 fill-white/60" /> Server
               components
             </NavLink>
-            <NavLink path="/examples/persistent-layout/fixed-sidebar-panel">
-              <ArrowTurnDownRightIcon className="size-4 fill-white/60" /> Fixed
-              sidebar panel
-            </NavLink>
             <NavLink path="/examples/nested-groups">Nested groups</NavLink>
             <NavLink path="/examples/conditional-panels">
               Conditional panels

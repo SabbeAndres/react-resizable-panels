@@ -22,9 +22,6 @@ export const routes = {
   "/examples/persistent-layout/server-rendering": lazy(
     () => import("./routes/PersistentLayoutsServerRenderingRoute")
   ),
-  "/examples/persistent-layout/fixed-sidebar-panel": lazy(
-    () => import("./routes/PersistentFixedSidebarRoute")
-  ),
   "/examples/nested-groups": lazy(() => import("./routes/NestedGroupsRoute")),
   "/examples/conditional-panels": lazy(
     () => import("./routes/ConditionalPanelsRoute")
