@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import {
   createRef,
@@ -9,7 +9,10 @@ import {
   type RefObject
 } from "react";
 import { beforeEach, describe, expect, test, vi } from "vitest";
-import { subscribeToMountedGroup } from "../../global/mutable-state/groups";
+import {
+  getMountedGroupState,
+  subscribeToMountedGroup
+} from "../../global/mutable-state/groups";
 import { moveSeparator } from "../../global/test/moveSeparator";
 import { assert } from "../../utils/assert";
 import {
@@ -218,6 +221,66 @@ describe("Group", () => {
   });
 
   describe("defaultLayout", () => {
+    test("preserves pixel size for panels with autoResize=false when group size changes", async () => {
+      let groupWidth = 1000;
+      let leftWidth = 200;
+      let rightWidth = 800;
+
+      const leftOnResize = vi.fn();
+      const rightOnResize = vi.fn();
+
+      const getBounds = (element: HTMLElement) => {
+        switch (element.id) {
+          case "group": {
+            return new DOMRect(0, 0, groupWidth, 50);
+          }
+          case "left": {
+            return new DOMRect(0, 0, leftWidth, 50);
+          }
+          case "right": {
+            return new DOMRect(leftWidth, 0, rightWidth, 50);
+          }
+        }
+      };
+
+      setElementBoundsFunction(getBounds);
+
+      render(
+        <Group id="group">
+          <Panel
+            autoResize={false}
+            defaultSize={200}
+            id="left"
+            onResize={leftOnResize}
+          />
+          <Panel defaultSize={800} id="right" onResize={rightOnResize} />
+        </Group>
+      );
+
+      await waitFor(() => {
+        const leftPanelSize = leftOnResize.mock.calls.at(-1)?.[0];
+        const rightPanelSize = rightOnResize.mock.calls.at(-1)?.[0];
+
+        expect(leftPanelSize?.inPixels).toBeCloseTo(200, 2);
+        expect(rightPanelSize?.inPixels).toBeCloseTo(800, 2);
+      });
+
+      groupWidth = 1200;
+      leftWidth = 200;
+      rightWidth = 1000;
+      setElementBoundsFunction(getBounds);
+
+      await waitFor(() => {
+        const nextState = getMountedGroupState("group", true);
+        const leftPanelSize = leftOnResize.mock.calls.at(-1)?.[0];
+        const rightPanelSize = rightOnResize.mock.calls.at(-1)?.[0];
+
+        expect(nextState.groupSize).toBe(1200);
+        expect(leftPanelSize?.inPixels).toBeCloseTo(200, 2);
+        expect(rightPanelSize?.inPixels).toBeCloseTo(1000, 2);
+      });
+    });
+
     test("should be ignored if it does not match Panel ids", () => {
       const onLayoutChange = vi.fn();
 
