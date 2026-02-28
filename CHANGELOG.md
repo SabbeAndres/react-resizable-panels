@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.7.0
+
+= [677](https://github.com/bvaughn/react-resizable-panels/pull/677): Add `groupResizeBehavior` prop to `Panel`, enabling panels to retain their current size (pixels) size when the parent `Group` is resized.
+
 ## 4.6.5
 
 - [670](https://github.com/bvaughn/react-resizable-panels/pull/670): Check for undefined `adoptedStyleSheets` (to better support environments like jsdom)

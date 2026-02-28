@@ -133,14 +133,14 @@ export type PanelProps = BasePanelAttributes & {
 
   /**
    * How should this Panel behave if the parent Group is resized?
-   * Defaults to "preserve-relative-size".
+   * Defaults to `preserve-relative-size`.
    *
-   * - preserve-relative-size: Retain the current relative size (as a percentage of the Group)
-   * - preserve-pixel-size: Retain its current size (in pixels)
+   * - `preserve-relative-size`: Retain the current relative size (as a percentage of the Group)
+   * - `preserve-pixel-size`: Retain its current size (in pixels)
    *
    * ℹ️ Panel min/max size constraints may impact this behavior.
    *
-   * ⚠️ A Group must contain at least one Panel with "preserve-relative-size" resize behavior.
+   * ⚠️ A Group must contain at least one Panel with `preserve-relative-size` resize behavior.
    */
   groupResizeBehavior?:
     | "preserve-relative-size"
