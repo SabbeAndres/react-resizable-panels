@@ -1,7 +1,7 @@
 import type { Layout, RegisteredGroup } from "../../components/group/types";
 import { formatLayoutNumber } from "./formatLayoutNumber";
 
-export function preserveNonAutoResizingPanelSizes({
+export function preserveFixedPanelSizes({
   group,
   nextGroupSize,
   prevGroupSize,
@@ -29,7 +29,7 @@ export function preserveNonAutoResizingPanelSizes({
 
   for (const panel of group.panels) {
     const prevPanelSize = prevLayout[panel.id] ?? 0;
-    if (panel.panelConstraints.autoResize === false) {
+    if (panel.panelConstraints.groupResizeBehavior === "fixed") {
       hasFixedPanels = true;
 
       const prevPanelSizeInPixels = (prevPanelSize / 100) * prevGroupSize;

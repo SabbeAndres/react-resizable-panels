@@ -4,7 +4,12 @@ import { Group, Panel, Separator } from "react-resizable-panels";
 
 /* prettier-ignore */
 <Group>
-  <Panel autoResize={false} defaultSize={280} minSize={200} maxSize={420}>
+  <Panel
+    groupResizeBehavior="fixed"
+    defaultSize={280}
+    minSize={200}
+    maxSize={420}
+  >
     left sidebar
   </Panel>
   <Separator />

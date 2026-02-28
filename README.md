@@ -222,11 +222,16 @@ Falls back to <code>useId</code> when not provided.</p>
 </td>
     </tr>
     <tr>
-      <td>autoResize</td>
-      <td><p>Whether this panel should resize automatically when the Group size changes.</p>
-<p>Defaults to true.</p>
-<p>Set to false to keep this panel&#39;s pixel size stable on window/container resize,
-while sibling panels absorb the remaining delta.</p>
+      <td>groupResizeBehavior</td>
+      <td><p>How this Panel should behave when its parent <code>&lt;Group&gt;</code> is resized
+(e.g. browser window resize, container size change, etc.).</p>
+<p>Defaults to <code>&quot;relative&quot;</code>.</p>
+<ul>
+<li><code>&quot;relative&quot;</code>: Retains its <em>relative</em> size (as a percentage of the Group) → scales with the container (default behavior)</li>
+<li><code>&quot;fixed&quot;</code>:     Retains its <em>absolute</em> pixel size → sibling panels absorb the delta</li>
+</ul>
+<p>⚠️ A <code>&lt;Group&gt;</code> must contain at least one Panel with <code>&quot;relative&quot;</code> behavior,
+   otherwise there is nothing to absorb size changes.</p>
 </td>
     </tr>
     <tr>

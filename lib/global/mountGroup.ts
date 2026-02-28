@@ -20,7 +20,7 @@ import { calculateDefaultLayout } from "./utils/calculateDefaultLayout";
 import { layoutsEqual } from "./utils/layoutsEqual";
 import { notifyPanelOnResize } from "./utils/notifyPanelOnResize";
 import { objectsEqual } from "./utils/objectsEqual";
-import { preserveNonAutoResizingPanelSizes } from "./utils/preserveNonAutoResizingPanelSizes";
+import { preserveFixedPanelSizes } from "./utils/preserveFixedPanelSizes";
 import { validateLayoutKeys } from "./utils/validateLayoutKeys";
 import { validatePanelGroupLayout } from "./utils/validatePanelGroupLayout";
 
@@ -66,7 +66,7 @@ export function mountGroup(group: RegisteredGroup) {
           const prevLayout = groupState.defaultLayoutDeferred
             ? calculateDefaultLayout(nextDerivedPanelConstraints)
             : groupState.layout;
-          const unsafeLayout = preserveNonAutoResizingPanelSizes({
+          const unsafeLayout = preserveFixedPanelSizes({
             group,
             nextGroupSize: groupSize,
             prevGroupSize: groupState.groupSize,

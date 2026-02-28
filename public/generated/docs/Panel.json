@@ -74,20 +74,24 @@
       "name": "style",
       "required": false
     },
-    "autoResize": {
+    "groupResizeBehavior": {
       "description": [
         {
-          "content": "<p>Whether this panel should resize automatically when the Group size changes.</p>\n"
+          "content": "<p>How this Panel should behave when its parent <code>&lt;Group&gt;</code> is resized\n(e.g. browser window resize, container size change, etc.).</p>\n"
         },
         {
-          "content": "<p>Defaults to true.</p>\n"
+          "content": "<p>Defaults to <code>&quot;relative&quot;</code>.</p>\n"
         },
         {
-          "content": "<p>Set to false to keep this panel's pixel size stable on window/container resize,\nwhile sibling panels absorb the remaining delta.</p>\n"
+          "content": "<ul>\n<li><code>&quot;relative&quot;</code>: Retains its <em>relative</em> size (as a percentage of the Group) → scales with the container (default behavior)</li>\n<li><code>&quot;fixed&quot;</code>:     Retains its <em>absolute</em> pixel size → sibling panels absorb the delta</li>\n</ul>\n"
+        },
+        {
+          "content": "<p>A <code>&lt;Group&gt;</code> must contain at least one Panel with <code>&quot;relative&quot;</code> behavior,\notherwise there is nothing to absorb size changes.</p>\n",
+          "intent": "warning"
         }
       ],
-      "html": "<div><span class=\"tok-variableName\"><span class=\"tok-propertyName\">autoResize</span></span><span class=\"tok-operator\">?</span><span class=\"tok-punctuation\">:</span><span class=\"\"> </span><span class=\"tok-variableName\">boolean</span><span class=\"\"> </span><span class=\"tok-operator\">=</span><span class=\"\"> </span><span class=\"tok-bool\">true</span></div>",
-      "name": "autoResize",
+      "html": "<div><span class=\"tok-variableName\"><span class=\"tok-propertyName\">groupResizeBehavior</span></span><span class=\"tok-operator\">?</span><span class=\"tok-punctuation\">:</span><span class=\"\"> </span><span class=\"tok-string\">\"relative\"</span><span class=\"\"> </span><span class=\"tok-operator\">|</span><span class=\"\"> </span><span class=\"tok-string\">\"fixed\"</span><span class=\"\"> </span><span class=\"tok-operator\">=</span><span class=\"\"> </span><span class=\"tok-string\">\"relative\"</span></div>",
+      "name": "groupResizeBehavior",
       "required": false
     },
     "collapsedSize": {

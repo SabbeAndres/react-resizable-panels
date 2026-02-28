@@ -1,21 +1,22 @@
 import { Box, Code, Header } from "react-lib-tools";
-import { html as ExampleHTML } from "../../public/generated/examples/AutoResizeSidebar.json";
+import { html as ExampleHTML } from "../../public/generated/examples/FixedSidebar.json";
 import { Group } from "../components/styled-panels/Group";
 import { Panel } from "../components/styled-panels/Panel";
 import { Separator } from "../components/styled-panels/Separator";
 
-export default function AutoResizeSidebarRoute() {
+export default function FixedSidebarRoute() {
   return (
     <Box direction="column" gap={4}>
       <Header section="Examples" title="Fixed sidebar panel" />
       <div>
-        Use <code>autoResize=&#123;false&#125;</code> on a sidebar panel to keep
-        its pixel size stable when the browser or container resizes.
+        Use <code>groupResizeBehavior=&quot;fixed&quot;</code> on a sidebar
+        panel to keep its pixel size stable when the browser or container
+        resizes.
       </div>
       <Code html={ExampleHTML} />
       <Group>
         <Panel
-          autoResize={false}
+          groupResizeBehavior="fixed"
           defaultSize={280}
           maxSize={420}
           minSize={200}

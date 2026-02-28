@@ -30,7 +30,7 @@ export const routes = {
     () => import("./routes/FixedSizePanelsRoute")
   ),
   "/examples/fixed-sidebar-panel": lazy(
-    () => import("./routes/AutoResizeSidebarRoute")
+    () => import("./routes/FixedSidebarRoute")
   ),
   "/examples/disabled-panels": lazy(
     () => import("./routes/DisabledPanelsRoute")

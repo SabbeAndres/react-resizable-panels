@@ -42,7 +42,7 @@ import { usePanelImperativeHandle } from "./usePanelImperativeHandle";
  * ⚠️ Panel elements must be direct DOM children of their parent Group elements.
  */
 export function Panel({
-  autoResize = true,
+  groupResizeBehavior = "relative",
   children,
   className,
   collapsedSize = "0%",
@@ -103,7 +103,7 @@ export function Panel({
         },
         onResize: hasOnResize ? onResizeStable : undefined,
         panelConstraints: {
-          autoResize,
+          groupResizeBehavior,
           collapsedSize,
           collapsible,
           defaultSize,
@@ -116,7 +116,7 @@ export function Panel({
       return registerPanel(registeredPanel);
     }
   }, [
-    autoResize,
+    groupResizeBehavior,
     collapsedSize,
     collapsible,
     defaultSize,

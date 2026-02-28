@@ -10,7 +10,7 @@ export type PanelSize = {
  * Values specified using other CSS units must be pre-converted.
  */
 export type PanelConstraints = {
-  autoResize?: boolean;
+  groupResizeBehavior?: "relative" | "fixed";
   collapsedSize: number;
   collapsible: boolean;
   defaultSize: number | undefined;
@@ -94,14 +94,18 @@ type BasePanelAttributes = Omit<HTMLAttributes<HTMLDivElement>, "onResize">;
 
 export type PanelProps = BasePanelAttributes & {
   /**
-   * Whether this panel should resize automatically when the Group size changes.
+   * How this Panel should behave when its parent `<Group>` is resized
+   * (e.g. browser window resize, container size change, etc.).
    *
-   * Defaults to true.
+   * Defaults to `"relative"`.
    *
-   * Set to false to keep this panel's pixel size stable on window/container resize,
-   * while sibling panels absorb the remaining delta.
+   * - `"relative"`: Retains its *relative* size (as a percentage of the Group) → scales with the container (default behavior)
+   * - `"fixed"`:     Retains its *absolute* pixel size → sibling panels absorb the delta
+   *
+   * ⚠️ A `<Group>` must contain at least one Panel with `"relative"` behavior,
+   *    otherwise there is nothing to absorb size changes.
    */
-  autoResize?: boolean | undefined;
+  groupResizeBehavior?: "relative" | "fixed" | undefined;
 
   /**
    * CSS class name.
@@ -213,7 +217,7 @@ export type PanelConstraintProps = Pick<
   PanelProps,
   | "collapsedSize"
   | "collapsible"
-  | "autoResize"
+  | "groupResizeBehavior"
   | "defaultSize"
   | "disabled"
   | "maxSize"

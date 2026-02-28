@@ -221,7 +221,7 @@ describe("Group", () => {
   });
 
   describe("defaultLayout", () => {
-    test("preserves pixel size for panels with autoResize=false when group size changes", async () => {
+    test('preserves pixel size for panels with groupResizeBehavior="fixed" when group size changes', async () => {
       let groupWidth = 1000;
       let leftWidth = 200;
       let rightWidth = 800;
@@ -248,7 +248,7 @@ describe("Group", () => {
       render(
         <Group id="group">
           <Panel
-            autoResize={false}
+            groupResizeBehavior="fixed"
             defaultSize={200}
             id="left"
             onResize={leftOnResize}
