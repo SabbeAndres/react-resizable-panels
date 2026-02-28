@@ -222,19 +222,6 @@ Falls back to <code>useId</code> when not provided.</p>
 </td>
     </tr>
     <tr>
-      <td>groupResizeBehavior</td>
-      <td><p>How this Panel should behave when its parent <code>&lt;Group&gt;</code> is resized
-(e.g. browser window resize, container size change, etc.).</p>
-<p>Defaults to <code>&quot;relative&quot;</code>.</p>
-<ul>
-<li><code>&quot;relative&quot;</code>: Retains its <em>relative</em> size (as a percentage of the Group) → scales with the container (default behavior)</li>
-<li><code>&quot;fixed&quot;</code>:     Retains its <em>absolute</em> pixel size → sibling panels absorb the delta</li>
-</ul>
-<p>⚠️ A <code>&lt;Group&gt;</code> must contain at least one Panel with <code>&quot;relative&quot;</code> behavior,
-   otherwise there is nothing to absorb size changes.</p>
-</td>
-    </tr>
-    <tr>
       <td>collapsedSize</td>
       <td><p>Panel size when collapsed; defaults to 0%.</p>
 </td>
@@ -258,6 +245,18 @@ Falls back to <code>useId</code> when not provided.</p>
     <tr>
       <td>elementRef</td>
       <td><p>Ref attached to the root <code>HTMLDivElement</code>.</p>
+</td>
+    </tr>
+    <tr>
+      <td>groupResizeBehavior</td>
+      <td><p>How should this Panel behave if the parent Group is resized?
+Defaults to &quot;preserve-relative-size&quot;.</p>
+<ul>
+<li>preserve-relative-size: Retain the current relative size (as a percentage of the Group)</li>
+<li>preserve-pixel-size: Retain its current size (in pixels)</li>
+</ul>
+<p>ℹ️ Panel min/max size constraints may impact this behavior.</p>
+<p>⚠️ A Group must contain at least one Panel with &quot;preserve-relative-size&quot; resize behavior.</p>
 </td>
     </tr>
     <tr>

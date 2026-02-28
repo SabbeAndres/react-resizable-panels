@@ -5,16 +5,20 @@ export type PanelSize = {
   inPixels: number;
 };
 
+export type GroupResizeBehavior =
+  | "preserve-relative-size"
+  | "preserve-pixel-size";
+
 /**
  * Numeric Panel constraints are represented as numeric percentages (0..100)
  * Values specified using other CSS units must be pre-converted.
  */
 export type PanelConstraints = {
-  groupResizeBehavior?: "relative" | "fixed";
   collapsedSize: number;
   collapsible: boolean;
   defaultSize: number | undefined;
   disabled: boolean | undefined;
+  groupResizeBehavior?: GroupResizeBehavior | undefined;
   maxSize: number;
   minSize: number;
   panelId: string;
@@ -94,20 +98,6 @@ type BasePanelAttributes = Omit<HTMLAttributes<HTMLDivElement>, "onResize">;
 
 export type PanelProps = BasePanelAttributes & {
   /**
-   * How this Panel should behave when its parent `<Group>` is resized
-   * (e.g. browser window resize, container size change, etc.).
-   *
-   * Defaults to `"relative"`.
-   *
-   * - `"relative"`: Retains its *relative* size (as a percentage of the Group) → scales with the container (default behavior)
-   * - `"fixed"`:     Retains its *absolute* pixel size → sibling panels absorb the delta
-   *
-   * ⚠️ A `<Group>` must contain at least one Panel with `"relative"` behavior,
-   *    otherwise there is nothing to absorb size changes.
-   */
-  groupResizeBehavior?: "relative" | "fixed" | undefined;
-
-  /**
    * CSS class name.
    *
    * ⚠️ Class is applied to nested `HTMLDivElement` to avoid styles that interfere with Flex layout.
@@ -140,6 +130,22 @@ export type PanelProps = BasePanelAttributes & {
    * Ref attached to the root `HTMLDivElement`.
    */
   elementRef?: Ref<HTMLDivElement | null> | undefined;
+
+  /**
+   * How should this Panel behave if the parent Group is resized?
+   * Defaults to "preserve-relative-size".
+   *
+   * - preserve-relative-size: Retain the current relative size (as a percentage of the Group)
+   * - preserve-pixel-size: Retain its current size (in pixels)
+   *
+   * ℹ️ Panel min/max size constraints may impact this behavior.
+   *
+   * ⚠️ A Group must contain at least one Panel with "preserve-relative-size" resize behavior.
+   */
+  groupResizeBehavior?:
+    | "preserve-relative-size"
+    | "preserve-pixel-size"
+    | undefined;
 
   /**
    * Uniquely identifies this panel within the parent group.
@@ -217,9 +223,9 @@ export type PanelConstraintProps = Pick<
   PanelProps,
   | "collapsedSize"
   | "collapsible"
-  | "groupResizeBehavior"
   | "defaultSize"
   | "disabled"
+  | "groupResizeBehavior"
   | "maxSize"
   | "minSize"
 >;

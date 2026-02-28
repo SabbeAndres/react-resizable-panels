@@ -74,26 +74,6 @@
       "name": "style",
       "required": false
     },
-    "groupResizeBehavior": {
-      "description": [
-        {
-          "content": "<p>How this Panel should behave when its parent <code>&lt;Group&gt;</code> is resized\n(e.g. browser window resize, container size change, etc.).</p>\n"
-        },
-        {
-          "content": "<p>Defaults to <code>&quot;relative&quot;</code>.</p>\n"
-        },
-        {
-          "content": "<ul>\n<li><code>&quot;relative&quot;</code>: Retains its <em>relative</em> size (as a percentage of the Group) → scales with the container (default behavior)</li>\n<li><code>&quot;fixed&quot;</code>:     Retains its <em>absolute</em> pixel size → sibling panels absorb the delta</li>\n</ul>\n"
-        },
-        {
-          "content": "<p>A <code>&lt;Group&gt;</code> must contain at least one Panel with <code>&quot;relative&quot;</code> behavior,\notherwise there is nothing to absorb size changes.</p>\n",
-          "intent": "warning"
-        }
-      ],
-      "html": "<div><span class=\"tok-variableName\"><span class=\"tok-propertyName\">groupResizeBehavior</span></span><span class=\"tok-operator\">?</span><span class=\"tok-punctuation\">:</span><span class=\"\"> </span><span class=\"tok-string\">\"relative\"</span><span class=\"\"> </span><span class=\"tok-operator\">|</span><span class=\"\"> </span><span class=\"tok-string\">\"fixed\"</span><span class=\"\"> </span><span class=\"tok-operator\">=</span><span class=\"\"> </span><span class=\"tok-string\">\"relative\"</span></div>",
-      "name": "groupResizeBehavior",
-      "required": false
-    },
     "collapsedSize": {
       "description": [
         {
@@ -146,6 +126,27 @@
       ],
       "html": "<div><span class=\"tok-variableName\"><span class=\"tok-propertyName\">elementRef</span></span><span class=\"tok-operator\">?</span><span class=\"tok-punctuation\">:</span><span class=\"\"> </span><span class=\"tok-variableName\">Ref</span><span class=\"\">&#60;</span><span class=\"tok-typeName\">HTMLDivElement</span><span class=\"\"> </span><span class=\"tok-operator\">|</span><span class=\"\"> </span><span class=\"tok-keyword\">null</span><span class=\"\">&#62;</span></div>",
       "name": "elementRef",
+      "required": false
+    },
+    "groupResizeBehavior": {
+      "description": [
+        {
+          "content": "<p>How should this Panel behave if the parent Group is resized?\nDefaults to &quot;preserve-relative-size&quot;.</p>\n"
+        },
+        {
+          "content": "<ul>\n<li>preserve-relative-size: Retain the current relative size (as a percentage of the Group)</li>\n<li>preserve-pixel-size: Retain its current size (in pixels)</li>\n</ul>\n"
+        },
+        {
+          "content": "<p>Panel min/max size constraints may impact this behavior.</p>\n",
+          "intent": "primary"
+        },
+        {
+          "content": "<p>A Group must contain at least one Panel with &quot;preserve-relative-size&quot; resize behavior.</p>\n",
+          "intent": "warning"
+        }
+      ],
+      "html": "<div><span class=\"tok-variableName\"><span class=\"tok-propertyName\">groupResizeBehavior</span></span><span class=\"tok-operator\">?</span><span class=\"tok-punctuation\">:</span><span class=\"\"> </span><span class=\"tok-string\">\"preserve-relative-size\"</span><span class=\"\"> </span><span class=\"tok-operator\">|</span><span class=\"\"> </span><span class=\"tok-string\">\"preserve-pixel-size\"</span><span class=\"\"> </span><span class=\"tok-operator\">=</span><span class=\"\"> </span><span class=\"tok-string\">\"preserve-relative-size\"</span></div>",
+      "name": "groupResizeBehavior",
       "required": false
     },
     "maxSize": {

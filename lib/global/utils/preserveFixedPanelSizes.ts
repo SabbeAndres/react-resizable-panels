@@ -20,32 +20,38 @@ export function preserveFixedPanelSizes({
     return prevLayout;
   }
 
-  let hasFixedPanels = false;
   let fixedPanelsTotalSize = 0;
   let flexiblePanelsTotalPrevSize = 0;
+  let hasPreservePixelSizePanels = false;
 
   const fixedPanels = new Map<string, number>();
   const flexiblePanelIds: string[] = [];
 
   for (const panel of group.panels) {
     const prevPanelSize = prevLayout[panel.id] ?? 0;
-    if (panel.panelConstraints.groupResizeBehavior === "fixed") {
-      hasFixedPanels = true;
+    switch (panel.panelConstraints.groupResizeBehavior) {
+      case "preserve-pixel-size": {
+        hasPreservePixelSizePanels = true;
 
-      const prevPanelSizeInPixels = (prevPanelSize / 100) * prevGroupSize;
-      const nextPanelSize = formatLayoutNumber(
-        (prevPanelSizeInPixels / nextGroupSize) * 100
-      );
+        const prevPanelSizeInPixels = (prevPanelSize / 100) * prevGroupSize;
+        const nextPanelSize = formatLayoutNumber(
+          (prevPanelSizeInPixels / nextGroupSize) * 100
+        );
 
-      fixedPanels.set(panel.id, nextPanelSize);
-      fixedPanelsTotalSize += nextPanelSize;
-    } else {
-      flexiblePanelIds.push(panel.id);
-      flexiblePanelsTotalPrevSize += prevPanelSize;
+        fixedPanels.set(panel.id, nextPanelSize);
+        fixedPanelsTotalSize += nextPanelSize;
+        break;
+      }
+      case "preserve-relative-size":
+      default: {
+        flexiblePanelIds.push(panel.id);
+        flexiblePanelsTotalPrevSize += prevPanelSize;
+        break;
+      }
     }
   }
 
-  if (!hasFixedPanels || flexiblePanelIds.length === 0) {
+  if (!hasPreservePixelSizePanels || flexiblePanelIds.length === 0) {
     return prevLayout;
   }
 

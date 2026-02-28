@@ -208,4 +208,106 @@ test.describe("resize events", () => {
       onLayoutChangedCount: 2
     });
   });
+
+  test('resizing the group should not impact panels with "preserve-pixel-size" behavior', async ({
+    page: mainPage
+  }) => {
+    const page = await goToUrl(
+      mainPage,
+      <Group>
+        <Panel
+          defaultSize="30%"
+          groupResizeBehavior="preserve-pixel-size"
+          id="left"
+          minSize={250}
+        />
+        <Separator />
+        <Panel id="right" minSize={50} />
+      </Group>
+    );
+
+    await expectLayout({
+      layout: {
+        left: 30,
+        right: 70
+      },
+      mainPage,
+      onLayoutChangeCount: 1,
+      onLayoutChangedCount: 1
+    });
+    await expectPanelSize({
+      mainPage,
+      onResizeCount: 1,
+      panelId: "left",
+      panelSize: {
+        asPercentage: 30,
+        inPixels: 293
+      }
+    });
+    await expectPanelSize({
+      mainPage,
+      onResizeCount: 1,
+      panelId: "right",
+      panelSize: {
+        asPercentage: 70,
+        inPixels: 683
+      }
+    });
+
+    await page.setViewportSize({
+      width: 500,
+      height: 500
+    });
+
+    await expectLayout({
+      layout: {
+        left: 62,
+        right: 38
+      },
+      mainPage,
+      onLayoutChangeCount: 2,
+      onLayoutChangedCount: 2
+    });
+    await expectPanelSize({
+      mainPage,
+      onResizeCount: 3,
+      panelId: "left",
+      panelSize: {
+        asPercentage: 62,
+        inPixels: 293
+      },
+      prevPanelSize: {
+        asPercentage: 30,
+        inPixels: 143
+      }
+    });
+    await expectPanelSize({
+      mainPage,
+      onResizeCount: 3,
+      panelId: "right",
+      panelSize: {
+        asPercentage: 38,
+        inPixels: 183
+      },
+      prevPanelSize: {
+        asPercentage: 70,
+        inPixels: 333
+      }
+    });
+
+    await page.setViewportSize({
+      width: 1000,
+      height: 500
+    });
+
+    await expectLayout({
+      layout: {
+        left: 30,
+        right: 70
+      },
+      mainPage,
+      onLayoutChangeCount: 3,
+      onLayoutChangedCount: 3
+    });
+  });
 });
