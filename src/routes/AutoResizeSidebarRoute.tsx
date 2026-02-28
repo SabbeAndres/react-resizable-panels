@@ -14,7 +14,13 @@ export default function AutoResizeSidebarRoute() {
       </div>
       <Code html={ExampleHTML} />
       <Group>
-        <Panel autoResize={false} defaultSize={280} maxSize={420} minSize={200} showSizeInPixels>
+        <Panel
+          autoResize={false}
+          defaultSize={280}
+          maxSize={420}
+          minSize={200}
+          showSizeInPixels
+        >
           left sidebar
         </Panel>
         <Separator />

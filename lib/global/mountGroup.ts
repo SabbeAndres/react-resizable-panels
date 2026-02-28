@@ -234,7 +234,11 @@ function preserveNonAutoResizingPanelSizes({
   prevGroupSize: number;
   prevLayout: Layout;
 }) {
-  if (prevGroupSize <= 0 || nextGroupSize <= 0 || prevGroupSize === nextGroupSize) {
+  if (
+    prevGroupSize <= 0 ||
+    nextGroupSize <= 0 ||
+    prevGroupSize === nextGroupSize
+  ) {
     return prevLayout;
   }
 
@@ -282,7 +286,9 @@ function preserveNonAutoResizingPanelSizes({
       );
     }
   } else {
-    const evenSize = formatLayoutNumber(remainingSize / flexiblePanelIds.length);
+    const evenSize = formatLayoutNumber(
+      remainingSize / flexiblePanelIds.length
+    );
     for (const panelId of flexiblePanelIds) {
       nextLayout[panelId] = evenSize;
     }
